@@ -12,10 +12,11 @@ We provide example code for searching branched networks based on a MobileNetV2 b
 
 ### Requirements
 
-The code was run in a `conda` environment with the packages listed in `bmtas_env.yml`. For a quick setup, use:
+The code was run in a `conda` environment with the following packages:
 
-    conda env create -f bmtas_env.yml
-    conda activate bmtas_env
+    conda install pytorch==1.4.0 torchvision==0.5.0 cudatoolkit=10.1 -c pytorch
+    conda install scikit-image==0.16.2 tensorboard==2.2.1
+    conda install opencv==4.4.0 -c conda-forge
 
 ### Architecture Search
 
