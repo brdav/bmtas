@@ -22,7 +22,7 @@ The code was run in a `conda` environment with the following packages:
 
 To start an architecture search, use for example:
 
-    python main_search.py --data_root ./PASCAL_MT --tasks semseg,human_parts,sal,normals,edge --resource_loss_weight 0.05
+    python main_search.py --data_root . --tasks semseg,human_parts,sal,normals,edge --resource_loss_weight 0.05
 
 On the first run, this will also download the dataset.
 
@@ -30,7 +30,7 @@ On the first run, this will also download the dataset.
 
 To train the branched network found via architecture search, supply the path to the corresponding `branch_config.json`:
 
-    python main_branched.py --configuration </path/to/branch_config> --data_root ./PASCAL_MT --tasks semseg,human_parts,sal,normals,edge
+    python main_branched.py --configuration </path/to/branch_config> --data_root . --tasks semseg,human_parts,sal,normals,edge
 
 Due to GPU memory constraints, multi-GPU training may be required. By default, branched network training is distributed across all available GPUs on the node.
 
@@ -38,7 +38,7 @@ Due to GPU memory constraints, multi-GPU training may be required. By default, b
 
 To evaluate a trained branched network, supply the path to the corresponding `checkpoint.pth`:
 
-    python main_test.py --model_path </path/to/checkpoint> --data_root ./PASCAL_MT
+    python main_test.py --model_path </path/to/checkpoint> --data_root .
 
 Note that the evaluation of edge detection is disabled, since the MATLAB-based [SEISM](https://github.com/jponttuset/seism) repository was used for obtaining the optimal dataset F-measure scores. Instead, the edge predictions are simply saved on the disk in this code.
 

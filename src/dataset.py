@@ -74,9 +74,9 @@ class PASCALContext(torch.utils.data.Dataset):
             self._download(data_dir, use_resized)
 
         if use_resized:
-            self.root = os.path.join(data_dir, 'resized')
+            self.root = os.path.join(data_dir, 'PASCAL_MT', 'resized')
         else:
-            self.root = data_dir
+            self.root = os.path.join(data_dir, 'PASCAL_MT')
 
         image_dir = os.path.join(self.root, 'JPEGImages')
 
@@ -165,17 +165,15 @@ class PASCALContext(torch.utils.data.Dataset):
                 self.semsegs.append(_semseg)
 
                 # Human Parts
-                _human_part = os.path.join(
-                    self.root, part_gt_dir, line + ".mat")
+                _human_part = os.path.join(part_gt_dir, line + ".mat")
                 assert os.path.isfile(_human_part), _human_part
                 self.parts.append(_human_part)
 
-                _normal = os.path.join(
-                    self.root, _normal_gt_dir, line + ".png")
+                _normal = os.path.join(_normal_gt_dir, line + ".png")
                 assert os.path.isfile(_normal), _normal
                 self.normals.append(_normal)
 
-                _sal = os.path.join(self.root, _sal_gt_dir, line + ".png")
+                _sal = os.path.join(_sal_gt_dir, line + ".png")
                 assert os.path.isfile(_sal), _sal
                 self.sals.append(_sal)
 
@@ -446,10 +444,8 @@ class PASCALContext(torch.utils.data.Dataset):
             tar.close()
             os.chdir(cwd)
 
-        _dpath_resized = os.path.join(data_dir, 'resized')
-
-        if not os.path.exists(_dpath_resized) and use_resized:
-            self.resize_dataset(data_dir)
+            # automatically generate resized version of the dataset
+            self.resize_dataset(os.path.join(data_dir, 'PASCAL_MT'))
 
     def resize_dataset(self, dataset_dir):
 
@@ -476,7 +472,7 @@ class PASCALContext(torch.utils.data.Dataset):
                 raise ValueError
             new_size = [el // 2 for el in image.size]
             image = image.resize(new_size, resample=res)
-            new_f = f.replace('PASCAL_MT', 'PASCAL_MT/resized')
+            new_f = 'PASCAL_MT/resized'.join(f.rsplit('PASCAL_MT', 1))
             if not os.path.exists(os.path.dirname(new_f)):
                 os.makedirs(os.path.dirname(new_f))
             image.save(new_f)
@@ -497,7 +493,7 @@ class PASCALContext(torch.utils.data.Dataset):
                 raise ValueError
             new_size = [el // 2 for el in image.size]
             image = image.resize(new_size, resample=res)
-            new_f = f.replace('PASCAL_MT', 'PASCAL_MT/resized')
+            new_f = 'PASCAL_MT/resized'.join(f.rsplit('PASCAL_MT', 1))
             # JPEG images might be compressed badly
             new_f = new_f.replace('.jpg', '.png')
             if not os.path.exists(os.path.dirname(new_f)):
@@ -538,7 +534,7 @@ class PASCALContext(torch.utils.data.Dataset):
                             part_mat[j][3][0][k][1] = mask.astype(np.uint8)
             else:
                 raise ValueError
-            new_f = f.replace('PASCAL_MT', 'PASCAL_MT/resized')
+            new_f = 'PASCAL_MT/resized'.join(f.rsplit('PASCAL_MT', 1))
             if not os.path.exists(os.path.dirname(new_f)):
                 os.makedirs(os.path.dirname(new_f))
             io.savemat(new_f, matfile, do_compression=True)
@@ -548,7 +544,7 @@ class PASCALContext(torch.utils.data.Dataset):
 
         txt_files = recursive_glob(rootdir=dataset_dir, suffix='.txt')
         for f in txt_files:
-            new_f = f.replace('PASCAL_MT', 'PASCAL_MT/resized')
+            new_f = 'PASCAL_MT/resized'.join(f.rsplit('PASCAL_MT', 1))
             if not os.path.exists(os.path.dirname(new_f)):
                 os.makedirs(os.path.dirname(new_f))
             os.system('cp {} {}'.format(f, new_f))
