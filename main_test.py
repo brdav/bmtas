@@ -11,8 +11,8 @@ from src import metrics
 parser = argparse.ArgumentParser()
 parser.add_argument('--model_path', type=str, required=True,
                     help='path to the model to test')
-parser.add_argument('--data_root', default='./PASCAL_MT',
-                    type=str, help='PASCAL-Context dataset root dir')
+parser.add_argument('--data_root', default='.',
+                    type=str, help='dataset root dir')
 
 
 def main(opt):

@@ -11,8 +11,8 @@ from src import tools
 
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--data_root', default='./PASCAL_MT',
-                    type=str, help='PASCAL-Context dataset root dir')
+parser.add_argument('--data_root', default='.',
+                    type=str, help='dataset root dir')
 parser.add_argument('--tasks', default='semseg,human_parts,sal,normals,edge', type=str,
                     help='tasks to train, comma-separated')
 parser.add_argument('--resource_loss_weight', default=0.05, type=float,

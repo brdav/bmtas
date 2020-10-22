@@ -14,8 +14,8 @@ from src import utils
 parser = argparse.ArgumentParser()
 parser.add_argument('--configuration', type=str, required=True,
                     help='path to the branching configuration file')
-parser.add_argument('--data_root', default='./PASCAL_MT',
-                    type=str, help='PASCAL-Context dataset root dir')
+parser.add_argument('--data_root', default='.',
+                    type=str, help='dataset root dir')
 parser.add_argument('--tasks', default='semseg,human_parts,sal,normals,edge', type=str,
                     help='tasks to train, comma-separated, order matters!')
 parser.add_argument('--resume_path', type=str,
