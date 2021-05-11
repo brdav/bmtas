@@ -2,6 +2,8 @@
 
 This repository provides example code for the BMVC 2020 paper [Automated Search for Resource-Efficient Branched Multi-Task Networks](https://arxiv.org/abs/2008.10292).
 
+<img src="./docs/teaser.png" width="900"/>
+
 ## Overview
 
 BMTAS is a principled method to automatically find branched multi-task networks for a given set of tasks. The goal is to obtain models which are both high-performing and efficient during inference. This is achieved by optimizing a supergraph through differentiable neural architecture search. The desired performance vs. efficiency trade-off is controlled via a proxyless, resource-aware loss.
@@ -12,7 +14,7 @@ We provide example code for searching branched networks based on a MobileNetV2 b
 
 ### Requirements
 
-The code was run in a `conda` environment with the following packages:
+The code was run in a `conda` environment, using Python 3.7 with the following packages:
 
     conda install pytorch==1.4.0 torchvision==0.5.0 cudatoolkit=10.1 -c pytorch
     conda install scikit-image==0.16.2 tensorboard==2.2.1
