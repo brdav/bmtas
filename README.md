@@ -16,15 +16,19 @@ We provide example code for searching branched networks based on a MobileNetV2 b
 
 The code was run in a `conda` environment, using Python 3.7 with the following packages:
 
-    conda install pytorch==1.4.0 torchvision==0.5.0 cudatoolkit=10.1 -c pytorch
-    conda install scikit-image==0.16.2 tensorboard==2.2.1
-    conda install opencv==4.4.0 -c conda-forge
+```bash
+conda install pytorch==1.4.0 torchvision==0.5.0 cudatoolkit=10.1 -c pytorch
+conda install scikit-image==0.16.2 tensorboard==2.2.1
+conda install opencv==4.4.0 -c conda-forge
+```
 
 ### Architecture Search
 
 To start an architecture search, use for example:
 
-    python main_search.py --data_root . --tasks semseg,human_parts,sal,normals,edge --resource_loss_weight 0.05
+```bash
+python main_search.py --data_root . --tasks semseg,human_parts,sal,normals,edge --resource_loss_weight 0.05
+```
 
 On the first run, this will also download the dataset.
 
@@ -32,7 +36,9 @@ On the first run, this will also download the dataset.
 
 To train the branched network found via architecture search, supply the path to the corresponding `branch_config.json`:
 
-    python main_branched.py --configuration </path/to/branch_config> --data_root . --tasks semseg,human_parts,sal,normals,edge
+```bash
+python main_branched.py --configuration </path/to/branch_config> --data_root . --tasks semseg,human_parts,sal,normals,edge
+```
 
 Due to GPU memory constraints, multi-GPU training may be required. By default, branched network training is distributed across all available GPUs on the node.
 
@@ -40,7 +46,9 @@ Due to GPU memory constraints, multi-GPU training may be required. By default, b
 
 To evaluate a trained branched network, supply the path to the corresponding `checkpoint.pth`:
 
-    python main_test.py --model_path </path/to/checkpoint> --data_root .
+```bash
+python main_test.py --model_path </path/to/checkpoint> --data_root .
+```
 
 Note that the evaluation of edge detection is disabled, since the MATLAB-based [SEISM](https://github.com/jponttuset/seism) repository was used for obtaining the optimal dataset F-measure scores. Instead, the edge predictions are simply saved on the disk in this code.
 
@@ -53,7 +61,8 @@ There are some minor differences between this version and the original code used
 ## Citation
 
 If you found this code useful in your research, please consider citing the paper:
-```
+
+```bibtex
 @InProceedings{bruggemann2020automated,
   Title     = {Automated Search for Resource-Efficient Branched Multi-Task Networks},
   Author    = {Bruggemann, David and Kanakis, Menelaos and Georgoulis, Stamatios and Van Gool, Luc},
