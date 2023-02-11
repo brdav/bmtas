@@ -435,12 +435,13 @@ class PASCALContext(torch.utils.data.Dataset):
 
             urllib.request.urlretrieve(self.URL, _fpath, _progress)
             print('\n')
+            print('Extracting dataset...')
 
             # extract file
             cwd = os.getcwd()
             tar = tarfile.open(_fpath)
             os.chdir(data_dir)
-            tar.extractall(path=os.path.dirname(data_dir))
+            tar.extractall(path=data_dir)
             tar.close()
             os.chdir(cwd)
 
