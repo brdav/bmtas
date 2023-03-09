@@ -1,3 +1,9 @@
+# Copyright (c) Facebook, Inc. and its affiliates.
+# All rights reserved.
+#
+# This source code is licensed under the license found in the
+# LICENSE file in https://github.com/facebookresearch/astmt.
+#
 import os
 import sys
 import json
@@ -15,8 +21,6 @@ import torchvision
 
 class PASCALContext(torch.utils.data.Dataset):
     """
-    Taken from https://github.com/facebookresearch/astmt
-
     PASCAL-Context dataset, for multiple tasks
     Included tasks:
         1. Edge detection,

@@ -71,9 +71,9 @@ If you found this code useful in your research, please consider citing the paper
 }
 ```
 
-## Credit
+## License
 
-The dataset and evaluation metrics are taken from the [ASTMT](https://github.com/facebookresearch/astmt) repository.
+The code in this repository is released under the MIT license. However, care should be taken to adopt appropriate licensing for third-party code. Files containing third-party code are clearly marked accordingly at the top.
 
 ## Contact
 
