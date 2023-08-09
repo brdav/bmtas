@@ -74,7 +74,3 @@ If you found this code useful in your research, please consider citing the paper
 ## License
 
 The code in this repository is released under the MIT license. However, care should be taken to adopt appropriate licensing for third-party code. Files containing third-party code are clearly marked accordingly at the top.
-
-## Contact
-
-For questions about the code or paper, feel free to contact me ([send email](mailto:brdavid@vision.ee.ethz.ch)).
